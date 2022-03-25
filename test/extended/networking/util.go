@@ -417,3 +417,54 @@ func InOVNKubernetesContext(body func()) {
 		},
 	)
 }
+
+// SubnetIPs enumerates all subnets in an ip net (starting with the provided IP address).
+func SubnetIPs(ipnet net.IPNet) ([]net.IP, error) {
+	var ipList []net.IP
+	ip := ipnet.IP
+	for ; ipnet.Contains(ip); ip = incIP(ip) {
+		ipList = append(ipList, ip)
+	}
+
+	return ipList, nil
+}
+
+func incIP(ip net.IP) net.IP {
+	// allocate a new IP
+	newIp := make(net.IP, len(ip))
+	copy(newIp, ip)
+
+	byteIp := []byte(newIp)
+	l := len(byteIp)
+	var i int
+	for k := range byteIp {
+		// start with the rightmost index first
+		// increment it
+		// if the index is < 256, then no overflow happened and we increment and break
+		// else, continue to the next field in the byte
+		i = l - 1 - k
+		if byteIp[i] < 0xff {
+			byteIp[i]++
+			break
+		} else {
+			byteIp[i] = 0
+		}
+	}
+	return net.IP(byteIp)
+}
+
+// AntiDeepEqual will return false if any element of x is in y or vice-versa.
+// Todo: Make this generic if needed.
+func AntiDeepEqual(x, y map[string]struct{}) bool {
+	for k := range x {
+		if _, ok := y[k]; ok {
+			return false
+		}
+	}
+	for k := range y {
+		if _, ok := x[k]; ok {
+			return false
+		}
+	}
+	return true
+}

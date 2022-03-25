@@ -2491,6 +2491,14 @@ var annotations = map[string]string{
 
 	"[Top Level] [sig-network] services when using OpenshiftSDN in a mode that isolates namespaces by default should prevent connections to pods in different namespaces on the same node via service IPs": "should prevent connections to pods in different namespaces on the same node via service IPs [Suite:openshift/conformance/parallel]",
 
+	"[Top Level] [sig-network][Feature:EgressIP] when using openshift ovn-kubernetes when assigning egress IPs to namespaces pods should have the assigned EgressIP when the EgressIP is on another node than the pod": "pods should have the assigned EgressIP when the EgressIP is on another node than the pod [Disabled:Unsupported]",
+
+	"[Top Level] [sig-network][Feature:EgressIP] when using openshift ovn-kubernetes when assigning egress IPs to namespaces pods should have the assigned EgressIPs": "pods should have the assigned EgressIPs [Disabled:Unsupported]",
+
+	"[Top Level] [sig-network][Feature:EgressIP] when using openshift ovn-kubernetes when assigning egress IPs to namespaces pods should keep the assigned EgressIPs when being rescheduled to another node": "pods should keep the assigned EgressIPs when being rescheduled to another node [Disabled:Unsupported]",
+
+	"[Top Level] [sig-network][Feature:EgressIP] when using openshift ovn-kubernetes when assigning egress IPs to namespaces should be able to tolerate recreation of the same EgressIP": "should be able to tolerate recreation of the same EgressIP [Disabled:Unsupported]",
+
 	"[Top Level] [sig-network][Feature:EgressRouterCNI] should ensure ipv4 egressrouter cni resources are created": "should ensure ipv4 egressrouter cni resources are created [Suite:openshift/conformance/parallel]",
 
 	"[Top Level] [sig-network][Feature:EgressRouterCNI] when using openshift ovn-kubernetes should ensure ipv6 egressrouter cni resources are created": "should ensure ipv6 egressrouter cni resources are created [Suite:openshift/conformance/parallel]",
